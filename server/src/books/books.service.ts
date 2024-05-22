@@ -8,9 +8,9 @@ export class BooksService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async searchBooks(query: string): Promise<any[]> {
+  async searchBooks(query: string): Promise<any> {
     const { data } = await firstValueFrom(
-      this.httpService.get<any[]>(`${this.apiUrl}?q=${query}`).pipe(
+      this.httpService.get<any>(`${this.apiUrl}?q=${query}`).pipe(
         catchError(() => {
           throw 'An error happened!';
         }),

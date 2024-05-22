@@ -40,6 +40,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@gradio/client": "^0.19.4",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
