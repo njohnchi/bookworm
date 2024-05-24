@@ -9,18 +9,18 @@ const error = ref('')
 const getRecommendations = async () => {
   isFetching.value = true
   try {
-    const response = await fetch('http://127.0.0.1:3001/recommendations?userPreferences=' + preference.value, {
+    const response = await fetch('http://127.0.0.1:3001/books/search?q=' + preference.value, {
       method: 'GET',
     })
     if (!response.ok) {
-      throw new Error('An error occurred while fetching recommendations')
+      throw new Error('An error occurred while searching for books')
     }
     const data = await response.json()
     console.log(data)
-    books.value = data.recommendations
+    books.value = data.items
   } catch (err) {
     console.error(err)
-    error.value = 'An error occurred while fetching recommendations'
+    error.value = 'An error occurred while searching for books'
   }
   isFetching.value = false
 }
@@ -31,11 +31,11 @@ const getRecommendations = async () => {
     <div class="mb-3">
       <label class="form-control w-full">
         <div class="label">
-          <span class="label-text">What is your preference?</span>
+          <span class="label-text">What are you looking for?</span>
         </div>
         <div class="join w-full">
           <input v-model="preference" class="input input-bordered join-item grow" placeholder="Type here"/>
-          <button @click="getRecommendations" class="btn join-item bg-blue-800" :disabled="isFetching">Get Recommendations</button>
+          <button @click="getRecommendations" class="btn join-item bg-blue-800" :disabled="isFetching">Search</button>
         </div>
         <div class="label">
           <span v-if="error" class="label-text-alt text-red-600">{{ error }}</span>

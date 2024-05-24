@@ -9,9 +9,9 @@ defineProps({
     <figure><img :src="book.volumeInfo.imageLinks.thumbnail" alt="Movie"/></figure>
     <div class="card-body w-3/6">
       <h2 class="card-title">{{ book.volumeInfo.title }}</h2>
-      <p class="line-clamp-6">{{ book.volumeInfo.description.slice(0, 100) }}</p>
+      <p class="line-clamp-6">{{ book.volumeInfo.description?.slice(0, 100) }}</p>
       <div class="card-actions justify-end">
-        <a :href="book.volumeInfo.previewLink" class="btn btn-sm btn-primary">Preview</a>
+        <NuxtLink :to="'preview-' + book.id" class="btn btn-sm btn-primary">Preview</NuxtLink>
       </div>
     </div>
   </div>

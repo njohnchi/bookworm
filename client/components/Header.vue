@@ -4,7 +4,7 @@ const { status, data, signOut  } = useAuth()
 
 <template>
   <div class="navbar bg-base-100 mb-3 px-8">
-    <div class="navbar-start" />
+    <div class="navbar-start"></div>
     <div class="navbar-center">
       <NuxtLink
         to="/"
@@ -48,6 +48,12 @@ const { status, data, signOut  } = useAuth()
         <p>
           {{ data?.fullname }}
         </p>
+        <NuxtLink
+            to="search"
+            class="btn btn-ghost btn-circle"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+        </NuxtLink>
         <button
           class="btn btn-ghost btn-circle"
           @click="signOut({ callbackUrl: '/login' })"
