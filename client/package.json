@@ -21,6 +21,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@gradio/client": "^0.19.4",
     "daisyui": "^4.11.1"
   }
 }

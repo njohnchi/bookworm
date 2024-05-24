@@ -3,7 +3,7 @@ import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class OpenAIRecommendationService {
-  private readonly apiUrl = 'https://gpt4.discord.rocks/ask';
+  private readonly apiUrl = 'https://api.discord.rocks/ask';
 
   constructor(private readonly httpService: HttpService) {}
 
