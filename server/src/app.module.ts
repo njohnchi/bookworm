@@ -6,9 +6,11 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { BooksModule } from './books/books.module';
 import { RecommendationsModule } from './recommendations/recommendations.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     MongooseModule.forRoot('mongodb://127.0.0.1/Bookworm'),
     UsersModule,
     AuthModule,

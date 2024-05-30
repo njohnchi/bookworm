@@ -1,16 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class OpenAIRecommendationService {
-  private readonly apiUrl = 'https://api.discord.rocks/ask';
-
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private configService: ConfigService,
+  ) {}
 
   async getRecommendations(userPreferences: string): Promise<any> {
+    const apiUrl = this.configService.get('OPENAI_API_URL');
+    const apiKey = this.configService.get('OPENAI_API_KEY');
+
     const response = await this.httpService
       .post(
-        this.apiUrl,
+        apiUrl,
         {
           messages: [
             {
@@ -23,15 +28,20 @@ export class OpenAIRecommendationService {
             },
           ],
           model: 'gpt-4o',
+          max_tokens: 2048,
+          stream: false,
+          temperature: 0.7,
+          top_p: 0.5,
         },
         {
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
           },
         },
       )
       .toPromise();
 
-    return response.data.response.split('\n');
+    return response.data.choices[0].message.content.split('\n');
   }
 }

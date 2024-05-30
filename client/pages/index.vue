@@ -8,6 +8,7 @@ const error = ref('')
 
 const getRecommendations = async () => {
   isFetching.value = true
+  error.value = ''
   try {
     const response = await fetch('http://127.0.0.1:3001/recommendations?userPreferences=' + preference.value, {
       method: 'GET',

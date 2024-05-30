@@ -4,9 +4,10 @@ import { RecommendationsService } from './recommendations.service';
 import { OpenAIRecommendationService } from './openai-recommendation.service';
 import { BooksService } from '../books/books.service';
 import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, ConfigModule],
   controllers: [RecommendationsController],
   providers: [
     RecommendationsService,
